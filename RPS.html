@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="RPS.css" />
+        <script src="https://use.fontawesome.com/beead4b693.js"></script>
+    </head>
+    <body>
+        <div class="heading">Rock Paper Scissors</div>
+
+        <div id="board">
+            <span id="userScore">0</span> - <span id="machineScore">0</span>
+        </div>
+
+        <div class="versus">vs</div>
+        <div id="userSelection">
+            <div class="choice" style="right: -70px">You</div>
+            <i
+                class="fa fa-hand-rock-o selectIconUser pose1 userHover"
+                aria-hidden="true"
+                style="font-size: 6.5em"
+                onclick="selectIcon(this)"
+                id="userRock"
+            ></i>
+            <i
+                class="fa fa-hand-paper-o selectIconUser pose2 userHover"
+                aria-hidden="true"
+                style="font-size: 6.5em"
+                onclick="selectIcon(this)"
+                id="userPaper"
+            ></i>
+            <i
+                class="fa fa-hand-scissors-o selectIconUser pose3 userHover"
+                aria-hidden="true"
+                style="font-size: 6.5em"
+                onclick="selectIcon(this)"
+                id="userScissors"
+            ></i>
+        </div>
+
+        <div id="machineSelection">
+            <div class="choice" style="left: -40px">Machine</div>
+            <i
+                class="fa fa-hand-rock-o selectIconMachine pose1"
+                aria-hidden="true"
+                style="font-size: 6.5em"
+                id="machineRock"
+            ></i>
+            <i
+                class="fa fa-hand-paper-o selectIconMachine pose2"
+                aria-hidden="true"
+                style="font-size: 6.5em"
+                id="machinePaper"
+            ></i>
+            <i
+                class="fa fa-hand-scissors-o selectIconMachine pose3"
+                aria-hidden="true"
+                style="font-size: 6.5em"
+                id="machineScissors"
+            ></i>
+        </div>
+
+        <div id="whoWon">
+            <i class="fa fa-hand-peace-o" aria-hidden="true"></i>
+             You won
+            <i class="fa fa-hand-peace-o" aria-hidden="true"></i>
+        </div>
+
+        <script src="RPS.js"></script>
+    </body>
+</html>
