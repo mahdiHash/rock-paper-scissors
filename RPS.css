@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+*::selection {
+    background-color: transparent;
+}
+
 html {
     background-color: #0f3057;
 }
@@ -129,4 +133,34 @@ body {
     font-weight: bold;
     color: #008891;
     border-bottom: 3px solid #008891;
+}
+
+.options {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    color: #007bac;
+    cursor: pointer;
+}
+
+.resetBttn {
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    color: #007bac;
+    cursor: pointer;
+}
+
+#optionsList {
+    display: none;
+    background-color: transparent;
+    border: 2px solid #008891;
+    border-radius: 9px;
+    width: 177px;
+    position: absolute;
+    top: 13px;
+    right: 60px;
+    padding: 9px;
+    font-weight: bold;
+    color: #007bac; 
 }
