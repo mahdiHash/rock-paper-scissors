@@ -10,12 +10,26 @@
     </head>
     <body>
         <div class="heading">Rock Paper Scissors</div>
+        <div class="resetBttn" onclick="reset()">
+            <i class="fa fa-repeat" aria-hidden="true" style="font-size: 2.5em;"></i>
+        </div>
+
+        <div class="options" onclick="showOptions()">
+            <i class="fa fa-bars" aria-hidden="true" style="font-size: 2.5em;"></i>
+        </div>
+
+        <div id="optionsList">
+            <label for="limit">Limited Rounds</label>
+            <input type="checkbox" name="limit" id="limit" onclick="createLimitNumInp(this)">  
+            <br>
+        </div>
 
         <div id="board">
-            <span id="userScore">0</span> - <span id="machineScore">0</span>
+            <span id="userScore">0</span> : <span id="machineScore">0</span>
         </div>
 
         <div class="versus">vs</div>
+        
         <div id="userSelection">
             <div class="choice" style="right: -70px">You</div>
             <i
@@ -63,11 +77,7 @@
             ></i>
         </div>
 
-        <div id="whoWon">
-            <i class="fa fa-hand-peace-o" aria-hidden="true"></i>
-             You won
-            <i class="fa fa-hand-peace-o" aria-hidden="true"></i>
-        </div>
+        <div id="whoWon"></div>
 
         <script src="RPS.js"></script>
     </body>
