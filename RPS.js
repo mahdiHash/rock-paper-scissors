@@ -71,9 +71,17 @@ function checkStatus(userWeapon) {
     removeOnclick();
     let choices = [userWeapon, machineWeapon];
     let winner = getWinner(choices);
-    setTimeout(evaluateScore, 500, winner);
+    setTimeout(showScores, 500);
     setTimeout(showWinMessage, 500, winner);
     setTimeout(moveIconBack, 1000);
+    if (
+        document.getElementById('limit').checked &&
+        (+document.getElementById('limitNumInp').value === userScore ||
+            +document.getElementById('limitNumInp').value === machineScore)
+    ) {
+        removeOnclick();
+        return;
+    }
     setTimeout(function () {
         document.getElementById('whoWon').style.display = 'none';
     }, 1000);
@@ -97,15 +105,17 @@ function getWinner(choices) {
             winner = situations[i][2];
         }
     }
+    if (winner === 'Machine') {
+        machineScore++;
+    } else if (winner === 'You') {
+        userScore++;
+    }
     return winner;
 }
 
-function evaluateScore(winner) {
-    if (winner === 'Machine') {
-        document.getElementById('machineScore').innerHTML = ++machineScore;
-    } else if (winner === 'You') {
-        document.getElementById('userScore').innerHTML = ++userScore;
-    }
+function showScores() {
+    document.getElementById('machineScore').innerHTML = machineScore;
+    document.getElementById('userScore').innerHTML = userScore;
 }
 
 function showWinMessage(winner) {
@@ -161,6 +171,7 @@ function reset() {
     userScore = machineScore = 0;
     document.getElementById('userScore').innerHTML = 0;
     document.getElementById('machineScore').innerHTML = 0;
+    document.getElementById('whoWon').style.display = 'none';
     addOnclick();
 }
 
