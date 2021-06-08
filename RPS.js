@@ -1,6 +1,6 @@
 'use strict';
 
-let situations = [
+let winningSituations = [
     ['userRock', 'machineRock', 'tie'],
     ['userRock', 'machinePaper', 'Machine'],
     ['userRock', 'machineScissors', 'You'],
@@ -15,8 +15,8 @@ let situations = [
 let userScore = 0,
     machineScore = 0;
 
-function selectIcon(elem) {
-    let weapon = elem.id;
+function selectWeapon(selectedIcon) {
+    let weapon = selectedIcon.id;
     moveIconForward(weapon);
     checkStatus(weapon);
 }
@@ -68,7 +68,7 @@ function moveIconBack() {
 function checkStatus(userWeapon) {
     let machineWeapon = chooseMachineWeapon();
     moveIconForward(machineWeapon);
-    removeOnclick();
+    removeWeaponsOnclick();
     let choices = [userWeapon, machineWeapon];
     let winner = getWinner(choices);
     setTimeout(showScores, 500);
@@ -79,30 +79,30 @@ function checkStatus(userWeapon) {
         (+document.getElementById('limitNumInp').value === userScore ||
             +document.getElementById('limitNumInp').value === machineScore)
     ) {
-        removeOnclick();
+        removeWeaponsOnclick();
         return;
     }
     setTimeout(function () {
         document.getElementById('whoWon').style.display = 'none';
     }, 1000);
-    setTimeout(addOnclick, 1000);
+    setTimeout(addWeaponsOnclick, 1000);
 }
 
 function chooseMachineWeapon() {
-    let machineChoices = ['machineRock', 'machinePaper', 'machineScissors'];
+    let machineWeaponChoices = ['machineRock', 'machinePaper', 'machineScissors'];
     let mWeaponIndex = Math.floor(Math.random() * 3);
-    let mWeapon = machineChoices[mWeaponIndex];
+    let mWeapon = machineWeaponChoices[mWeaponIndex];
     return mWeapon;
 }
 
 function getWinner(choices) {
     let winner;
-    for (let i = 0; i < situations.length; i++) {
+    for (let i = 0; i < winningSituations.length; i++) {
         if (
-            situations[i][0] === choices[0] &&
-            situations[i][1] === choices[1]
+            winningSituations[i][0] === choices[0] &&
+            winningSituations[i][1] === choices[1]
         ) {
-            winner = situations[i][2];
+            winner = winningSituations[i][2];
         }
     }
     if (winner === 'Machine') {
@@ -155,16 +155,16 @@ function showWinMessage(winner) {
     }
 }
 
-function removeOnclick() {
+function removeWeaponsOnclick() {
     document.getElementById('userRock').setAttribute('onclick', '');
     document.getElementById('userPaper').setAttribute('onclick', '');
     document.getElementById('userScissors').setAttribute('onclick', '');
 }
 
-function addOnclick() {
-    document.getElementById('userRock').setAttribute('onclick', 'selectIcon(this)');
-    document.getElementById('userPaper').setAttribute('onclick', 'selectIcon(this)');
-    document.getElementById('userScissors').setAttribute('onclick', 'selectIcon(this)');
+function addWeaponsOnclick() {
+    document.getElementById('userRock').setAttribute('onclick', 'selectWeapon(this)');
+    document.getElementById('userPaper').setAttribute('onclick', 'selectWeapon(this)');
+    document.getElementById('userScissors').setAttribute('onclick', 'selectWeapon(this)');
 }
 
 function reset() {
@@ -172,7 +172,7 @@ function reset() {
     document.getElementById('userScore').innerHTML = 0;
     document.getElementById('machineScore').innerHTML = 0;
     document.getElementById('whoWon').style.display = 'none';
-    addOnclick();
+    addWeaponsOnclick();
 }
 
 function createLimitNumInp(elem) {
