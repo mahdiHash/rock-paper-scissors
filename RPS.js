@@ -19,6 +19,11 @@ let isGameStarted = false;
 function selectWeapon(selectedIcon) {
   isGameStarted = true;
   hideOptions();
+
+  if (document.getElementById('limit').checked) {
+    document.getElementById('limitNumInp').readOnly = true;
+  }
+
   let weapon = selectedIcon.id;
   moveIconForward(weapon);
   checkStatus(weapon);
@@ -192,6 +197,11 @@ function addWeaponsOnclick() {
 
 function reset() {
   isGameStarted = false;
+  
+  if (document.getElementById('limit').checked) {
+    document.getElementById('limitNumInp').readOnly = false;
+  }
+  
   userScore = machineScore = 0;
   document.getElementById('userScore').innerHTML = 0;
   document.getElementById('machineScore').innerHTML = 0;
@@ -201,6 +211,12 @@ function reset() {
 
 function createLimitNumInp(elem) {
   let isChecked = elem.checked;
+  
+  if (isGameStarted) {
+    alert(`Since you have already started the game, you can not change score limitation. Reset the game to do it.`);
+    elem.checked = !isChecked;
+    return;
+  }
 
   if (isChecked) {
     let optionsList = document.getElementById('optionsList');
@@ -224,13 +240,6 @@ function createLimitNumInp(elem) {
 }
 
 function showOptions() {
-  if (isGameStarted) {
-    alert(`Since you have already started the game, you can not access options.
-Reset the game to access.`);
-    document.getElementById('optionsList').style.display = 'none';
-    return;
-  }
-
   let options = document.getElementById('optionsList');
   options.style.display = 'inline-block';
   
